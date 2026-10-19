@@ -4,7 +4,7 @@ using System.Text;
 
 namespace sistema_academia4sem.CRUD.MODELO
 {
-    internal class Class1
+    internal class Controle
     {
     }
 }

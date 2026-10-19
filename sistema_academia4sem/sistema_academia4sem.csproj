@@ -8,9 +8,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="CRUD\DAL\" />
-    <Folder Include="CRUD\MODELO\" />
-  </ItemGroup>
-
 </Project>

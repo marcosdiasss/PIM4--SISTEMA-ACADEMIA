@@ -9,6 +9,10 @@
       Title="frmPrincipal">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="387*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Page>
