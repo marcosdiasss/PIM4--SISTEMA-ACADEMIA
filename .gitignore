@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 .env
 bin/
 obj/
 .vs/
+=======
+﻿.vs/
+bin/
+obj/
+*.user
+*.suo
+>>>>>>> 3aa2a7407343770826605c944bb6a2e850d8e626
