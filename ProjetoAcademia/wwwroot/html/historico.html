@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Histórico de alunos - Prime Fitness Club</title>
+    <link rel="icon" href="../img/relatorio.png" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+  </head>
+  <body data-page="historico">
+    <header class="topo">
+      <nav class="navegacao-rapida" aria-label="Navegação rápida">
+        <button
+          type="button"
+          class="btn-menu-hamburguer"
+          data-action="alternar-menu-rapido"
+          aria-expanded="false"
+          aria-controls="menu-rapido-opcoes"
+          aria-label="Abrir menu de navegação"
+        >
+          <i class="bi bi-list" aria-hidden="true"> </i>
+        </button>
+        <div
+          class="menu-rapido-opcoes"
+          id="menu-rapido-opcoes"
+          aria-hidden="true"
+        >
+          <button type="button" data-href="menu.html" data-nav-page="menu">
+            Menu
+          </button>
+          <button
+            type="button"
+            data-href="cadastro.html"
+            data-nav-page="cadastro"
+          >
+            Cadastro
+          </button>
+          <button type="button" data-href="lista.html" data-nav-page="lista">
+            Lista
+          </button>
+          <button
+            type="button"
+            class="nav-master"
+            data-href="master.html"
+            data-nav-page="master"
+          >
+            Master
+          </button>
+          <button
+            type="button"
+            class="nav-master"
+            data-href="historico.html"
+            data-nav-page="historico"
+          >
+            Relatórios
+          </button>
+        </div>
+      </nav>
+      <h1>PRIME FITNESS CLUB</h1>
+    </header>
+    <button class="btn-sair" data-action="logout">
+      <i class="bi bi-box-arrow-right"> </i>
+      <span class="tooltip-sair"> SAIR DA CONTA </span>
+    </button>
+    <main class="container">
+      <div class="topo-relatorio">
+        <h2>Relatórios gerais</h2>
+        <button type="button" class="voltar" data-href="master.html">
+          Voltar
+        </button>
+      </div>
+      <section class="area-relatorios">
+        <div class="graficos-container">
+          <div class="grafico-card">
+            <h4>Pagamentos por modalidade</h4>
+            <div id="graficoPagamentos"></div>
+          </div>
+          <div class="grafico-card">
+            <h4>Alunos por plano</h4>
+            <div id="graficoPlanos"></div>
+          </div>
+        </div>
+        <div class="relatorio-geral">
+          <h4>Resumo geral</h4>
+          <div class="resumo-cards">
+            <article class="resumo-card">
+              <i
+                class="bi bi-currency-dollar resumo-card-icone"
+                aria-hidden="true"
+              >
+              </i>
+              <div>
+                <h5>Forma de pagamento mais utilizada</h5>
+                <p id="relatorioPagamento">-</p>
+              </div>
+            </article>
+            <article class="resumo-card">
+              <i
+                class="bi bi-clipboard-data resumo-card-icone"
+                aria-hidden="true"
+              >
+              </i>
+              <div>
+                <h5>Plano com mais alunos</h5>
+                <p id="relatorioPlano">-</p>
+              </div>
+            </article>
+            <article class="resumo-card">
+              <i
+                class="bi bi-person-circle resumo-card-icone"
+                aria-hidden="true"
+              >
+              </i>
+              <div>
+                <h5>Total de alunos cadastrados</h5>
+                <p id="relatorioTotal">-</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="area-documento" aria-label="Documento do relatório">
+        <button
+          type="button"
+          class="card-opcao card-documento-relatorio"
+          data-action="gerar-documento-relatorio"
+        >
+          <i
+            class="bi bi-file-earmark-text card-documento-icone"
+            aria-hidden="true"
+          >
+          </i>
+          <span> HISTÓRICO </span>
+          <p>Gerar documento com o histórico de ações do sistema.</p>
+        </button>
+      </section>
+    </main>
+    <dialog
+      class="modal-saida"
+      id="confirmacao-saida"
+      aria-labelledby="titulo-confirmacao-saida"
+    >
+      <div class="modal-saida-conteudo">
+        <h2 id="titulo-confirmacao-saida">Deseja sair da conta?</h2>
+        <p>Confirme se deseja encerrar sua sessão no sistema.</p>
+        <div class="modal-saida-acoes">
+          <button
+            type="button"
+            class="btn-modal-voltar"
+            data-action="fechar-confirmacao-saida"
+          >
+            Voltar
+          </button>
+          <button
+            type="button"
+            class="btn-modal-sair"
+            data-action="confirmar-logout"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <footer class="rodape-login">
+      PRIME FITNESS CLUB - Seu treino começa aqui!
+    </footer>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="../js/script.js?v3"></script>
+  </body>
+</html>

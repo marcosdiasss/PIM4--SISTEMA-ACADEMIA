@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de alunos - Prime Fitness Club</title>
+    <link rel="icon" href="../img/relatorio.png" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+  </head>
+  <body data-page="lista">
+    <header class="topo">
+      <div class="topo-logo" aria-hidden="true">
+        <img src="../img/logo.png" alt="" />
+      </div>
+      <h1>PRIME FITNESS CLUB</h1>
+    </header>
+    <button class="btn-sair" data-action="logout">
+      <i class="bi bi-box-arrow-right"> </i>
+      <span class="tooltip-sair"> SAIR DA CONTA </span>
+    </button>
+    <main class="container">
+      <h2>Lista de alunos</h2>
+      <div class="campo-busca-lista">
+        <i class="bi bi-search icone-busca"> </i>
+        <input type="text" id="busca" placeholder="Pesquisar aluno..." />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nome</th>
+            <th>Data de nascimento</th>
+            <th>Telefone</th>
+            <th>CPF</th>
+            <th>Plano</th>
+            <th>Início</th>
+            <th>Pagamento</th>
+            <th class="th-acoes">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="listaAlunos"></tbody>
+      </table>
+      <p id="mensagem-lista" class="mensagem mensagem-lista"></p>
+      <div class="acoes-lista">
+        <button type="button" class="voltar" data-href="menu.html">
+          Voltar
+        </button>
+      </div>
+    </main>
+    <dialog
+      class="modal-saida"
+      id="confirmacao-saida"
+      aria-labelledby="titulo-confirmacao-saida"
+    >
+      <div class="modal-saida-conteudo">
+        <h2 id="titulo-confirmacao-saida">Deseja sair da conta?</h2>
+        <p>Confirme se deseja encerrar sua sessão no sistema.</p>
+        <div class="modal-saida-acoes">
+          <button
+            type="button"
+            class="btn-modal-voltar"
+            data-action="fechar-confirmacao-saida"
+          >
+            Voltar
+          </button>
+          <button
+            type="button"
+            class="btn-modal-sair"
+            data-action="confirmar-logout"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <footer class="rodape-login">
+      PRIME FITNESS CLUB - Seu treino começa aqui!
+    </footer>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="../js/script.js?v3"></script>
+  </body>
+</html>

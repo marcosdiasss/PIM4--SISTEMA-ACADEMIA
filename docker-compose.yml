@@ -1,0 +1,17 @@
+services:
+  banco:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SA_PASSWORD}
+    ports: ["1433:1433"]
+    volumes: [dados:/var/opt/mssql]
+  api:
+    build: .
+    depends_on: [banco]
+    environment:
+      ConnectionStrings__ConexaoBanco: "Server=banco;Database=PIM;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+      Jwt__Key: ${JWT_KEY}
+    ports: ["8080:8080"]
+volumes:
+  dados:
