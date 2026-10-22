@@ -1,12 +1,24 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.env
+bin/
+obj/
+.vs/
+=======
+>>>>>>> a2b591ea908030627f6f67faf756c7c2f421709f
 ﻿.vs/
 bin/
 obj/
 *.user
 *.suo
+<<<<<<< HEAD
 =======
 .env
 bin/
 obj/
 .vs/
 >>>>>>> 77ae0b8 (base projeto,arrumar bugs)
+=======
+>>>>>>> 3aa2a7407343770826605c944bb6a2e850d8e626
+>>>>>>> a2b591ea908030627f6f67faf756c7c2f421709f
