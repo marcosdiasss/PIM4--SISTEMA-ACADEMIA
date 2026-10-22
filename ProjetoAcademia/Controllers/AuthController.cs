@@ -22,7 +22,7 @@ namespace ProjetoAcademiaApi.Controllers
             if (string.IsNullOrWhiteSpace(request.Login) || string.IsNullOrWhiteSpace(request.Senha))
                 return BadRequest(new { mensagem = "Preencha usuário e senha." });
 
-            SSSvar usuario = contexto.Usuarios.FirstOrDefault(u => u.Login == request.Login);
+            var usuario = contexto.Usuarios.FirstOrDefault(u => u.Login == request.Login);
             if (usuario == null || !SenhaHash.Verificar(request.Senha, usuario.Senha ?? ""))
                 return Unauthorized(new { mensagem = "Usuário ou senha inválidos." });
 
