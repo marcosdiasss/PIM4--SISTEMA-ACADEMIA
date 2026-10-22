@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - Prime Fitness Club</title>
+    <link rel="icon" href="../img/relatorio.png" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+  </head>
+  <body data-page="cadastro">
+    <header class="topo">
+      <div class="topo-logo" aria-hidden="true">
+        <img src="../img/logo.png" alt="" />
+      </div>
+      <h1>PRIME FITNESS CLUB</h1>
+    </header>
+    <button class="btn-sair" data-action="logout">
+      <i class="bi bi-box-arrow-right"> </i>
+      <span class="tooltip-sair"> SAIR DA CONTA </span>
+    </button>
+    <main class="container">
+      <h2>Cadastro de aluno</h2>
+      <form class="form-cadastro">
+        <div class="campo">
+          <label for="nome"> Nome </label>
+          <input type="text" id="nome" placeholder="Digite o nome do aluno" />
+        </div>
+        <div class="campo">
+          <label for="dataNascimento"> Data de nascimento </label>
+          <input
+            type="date"
+            id="dataNascimento"
+            maxlength="10"
+            placeholder="Digite a data de nascimento do aluno"
+          />
+        </div>
+        <div class="campo">
+          <label for="telefone"> Número de telefone </label>
+          <input
+            type="text"
+            id="telefone"
+            maxlength="15"
+            placeholder="(XX) XXXXX-XXXX"
+          />
+        </div>
+        <div class="campo">
+          <label for="cpf"> CPF </label>
+          <input
+            type="text"
+            id="cpf"
+            maxlength="14"
+            placeholder="000.000.000-00"
+          />
+        </div>
+        <div class="campo">
+          <label for="plano-botao"> Plano </label>
+          <div
+            class="select-personalizado"
+            data-select-custom
+            data-placeholder="Selecione o plano"
+          >
+            <input type="hidden" id="plano" value="" />
+            <button
+              type="button"
+              class="select-personalizado-botao"
+              id="plano-botao"
+              data-action="alternar-select-custom"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-controls="plano-opcoes"
+            >
+              <span data-select-text> Selecione o plano </span>
+            </button>
+            <ul
+              class="select-personalizado-opcoes"
+              id="plano-opcoes"
+              role="listbox"
+            >
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="1"
+                >
+                  Mensal
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="2"
+                >
+                  Trimestral
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="3"
+                >
+                  Semestral
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="4"
+                >
+                  Anual
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="pagamento-botao"> Forma de pagamento </label>
+          <div
+            class="select-personalizado"
+            data-select-custom
+            data-placeholder="Selecione a forma de pagamento"
+          >
+            <input type="hidden" id="pagamento" value="" />
+            <button
+              type="button"
+              class="select-personalizado-botao"
+              id="pagamento-botao"
+              data-action="alternar-select-custom"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-controls="pagamento-opcoes"
+            >
+              <span data-select-text> Selecione a forma de pagamento </span>
+            </button>
+            <ul
+              class="select-personalizado-opcoes"
+              id="pagamento-opcoes"
+              role="listbox"
+            >
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="Crédito"
+                >
+                  Crédito
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="Débito"
+                >
+                  Débito
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="PIX"
+                >
+                  PIX
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected="false"
+                  data-action="selecionar-opcao-custom"
+                  data-value="Dinheiro"
+                >
+                  Dinheiro
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="dataInicio"> Data de início da matrícula </label>
+          <input type="date" id="dataInicio" />
+        </div>
+        <p id="mensagem-cadastro" class="mensagem mensagem-cadastro"></p>
+        <div class="acoes">
+          <button type="button" class="voltar" data-href="menu.html">
+            Voltar
+          </button>
+          <button
+            type="button"
+            class="btn-acao-principal"
+            data-action="cadastrar"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </form>
+    </main>
+    <dialog
+      class="modal-saida"
+      id="confirmacao-saida"
+      aria-labelledby="titulo-confirmacao-saida"
+    >
+      <div class="modal-saida-conteudo">
+        <h2 id="titulo-confirmacao-saida">Deseja sair da conta?</h2>
+        <p>Confirme se deseja encerrar sua sessão no sistema.</p>
+        <div class="modal-saida-acoes">
+          <button
+            type="button"
+            class="btn-modal-voltar"
+            data-action="fechar-confirmacao-saida"
+          >
+            Voltar
+          </button>
+          <button
+            type="button"
+            class="btn-modal-sair"
+            data-action="confirmar-logout"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <footer class="rodape-login">
+      PRIME FITNESS CLUB - Seu treino começa aqui!
+    </footer>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="../js/script.js?v3"></script>
+  </body>
+</html>

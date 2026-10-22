@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil do aluno - Prime Fitness Club</title>
+    <link rel="icon" href="../img/relatorio.png" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+  </head>
+  <body data-page="perfil">
+    <header class="topo">
+      <nav class="navegacao-rapida" aria-label="Navegação rápida">
+        <button
+          type="button"
+          class="btn-menu-hamburguer"
+          data-action="alternar-menu-rapido"
+          aria-expanded="false"
+          aria-controls="menu-rapido-opcoes"
+          aria-label="Abrir menu de navegação"
+        >
+          <i class="bi bi-list" aria-hidden="true"> </i>
+        </button>
+        <div
+          class="menu-rapido-opcoes"
+          id="menu-rapido-opcoes"
+          aria-hidden="true"
+        >
+          <button type="button" data-href="menu.html" data-nav-page="menu">
+            Menu
+          </button>
+          <button
+            type="button"
+            data-href="cadastro.html"
+            data-nav-page="cadastro"
+          >
+            Cadastro
+          </button>
+          <button type="button" data-href="lista.html" data-nav-page="lista">
+            Lista
+          </button>
+          <button
+            type="button"
+            class="nav-master"
+            data-href="master.html"
+            data-nav-page="master"
+          >
+            Master
+          </button>
+          <button
+            type="button"
+            class="nav-master"
+            data-href="historico.html"
+            data-nav-page="historico"
+          >
+            Relatórios
+          </button>
+        </div>
+      </nav>
+      <h1>PRIME FITNESS CLUB</h1>
+    </header>
+    <button class="btn-sair" data-action="logout">
+      <i class="bi bi-box-arrow-right"> </i>
+      <span class="tooltip-sair"> SAIR DA CONTA </span>
+    </button>
+    <main class="container">
+      <h2>Perfil do aluno</h2>
+      <p id="mensagem-perfil" class="mensagem mensagem-perfil"></p>
+      <section class="perfil-card">
+        <div class="perfil-topo">
+          <div class="foto-area">
+            <div class="foto-perfil">
+              <img id="iconePadrao" src="../img/perfil.svg" alt="" />
+              <img id="fotoAluno" src="" alt="Foto do aluno" />
+            </div>
+            <div class="foto-acoes">
+              <button
+                type="button"
+                class="btn-excluir-foto"
+                data-action="remover-foto"
+                hidden
+              >
+                Excluir foto
+              </button>
+              <label for="inputFoto" class="btn-foto"> Adicionar foto </label>
+              <input type="file" id="inputFoto" accept="image/*" />
+            </div>
+          </div>
+          <div class="info-perfil">
+            <div class="info-item">
+              <span class="info-titulo"> Nome </span>
+              <span class="info-valor" id="perfilNome"> - </span>
+            </div>
+            <div class="info-item">
+              <span class="info-titulo"> Data de nascimento </span>
+              <span class="info-valor" id="perfilData"> - </span>
+            </div>
+            <div class="info-item">
+              <span class="info-titulo"> Telefone </span>
+              <span class="info-valor" id="perfilTelefone"> - </span>
+            </div>
+            <div class="info-item">
+              <span class="info-titulo"> CPF </span>
+              <span class="info-valor" id="perfilCpf"> - </span>
+            </div>
+            <div class="info-item">
+              <span class="info-titulo"> Plano </span>
+              <span class="info-valor" id="perfilPlano"> - </span>
+            </div>
+            <div class="info-item">
+              <span class="info-titulo"> Forma de pagamento </span>
+              <span class="info-valor" id="perfilPagamento"> - </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="acoes">
+        <button type="button" class="voltar" data-href="lista.html">
+          Voltar
+        </button>
+      </div>
+    </main>
+    <dialog
+      class="modal-saida"
+      id="confirmacao-saida"
+      aria-labelledby="titulo-confirmacao-saida"
+    >
+      <div class="modal-saida-conteudo">
+        <h2 id="titulo-confirmacao-saida">Deseja sair da conta?</h2>
+        <p>Confirme se deseja encerrar sua sessão no sistema.</p>
+        <div class="modal-saida-acoes">
+          <button
+            type="button"
+            class="btn-modal-voltar"
+            data-action="fechar-confirmacao-saida"
+          >
+            Voltar
+          </button>
+          <button
+            type="button"
+            class="btn-modal-sair"
+            data-action="confirmar-logout"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <footer class="rodape-login">
+      PRIME FITNESS CLUB - Seu treino começa aqui!
+    </footer>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="../js/script.js?v3"></script>
+  </body>
+</html>

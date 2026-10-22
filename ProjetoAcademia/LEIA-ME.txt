@@ -1,0 +1,8 @@
+COMO RODAR
+1. SQL Server: execute BANCO DE DADOS/BANCO_PIM.sql (recria o banco PIM do zero).
+2. Visual Studio: abra a pasta ProjetoAcademia, rode com o perfil https e acesse /html/login.html.
+3. Usuários de teste: admin / admin1234 (perfil admin) e master / 1234 (perfil master). Troque antes de entregar.
+
+APIS
+Documentação em /openapi/v1.json. Todas exigem login (token JWT), exceto /api/auth/login e /api/saude.
+Excluir aluno e cancelar matrícula: somente perfil master.

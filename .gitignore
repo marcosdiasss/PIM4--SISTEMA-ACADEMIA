@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 ﻿.vs/
 bin/
 obj/
 *.user
 *.suo
+=======
+.env
+bin/
+obj/
+.vs/
+>>>>>>> 77ae0b8 (base projeto,arrumar bugs)
