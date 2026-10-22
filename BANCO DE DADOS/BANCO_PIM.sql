@@ -162,7 +162,7 @@ BEGIN
     SET NOCOUNT ON;
     INSERT INTO Auditoria (tabela, acao, registro_id)
     SELECT 'Matricula',
-           CASE WHEN d.id_matricula IS NULL THEN 'INSERT'
+           CASE WHEN d.id_matricula IS NULL THEN 'INSERT'''
                 WHEN i.id_matricula IS NULL THEN 'DELETE' ELSE 'UPDATE' END,
            COALESCE(i.id_matricula, d.id_matricula)
     FROM inserted i FULL OUTER JOIN deleted d ON i.id_matricula = d.id_matricula;

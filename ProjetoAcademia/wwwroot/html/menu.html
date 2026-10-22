@@ -3,149 +3,84 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Menu - Prime Fitness Club</title>
-
+    <title>Início - Prime Fitness Club</title>
     <link rel="icon" href="../img/relatorio.png" />
-
-    <link rel="stylesheet" href="../css/style.css">
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../css/app.css" />
 </head>
 
 <body data-page="menu">
 
-    <header class="topo">
+    <div class="app">
+        <main class="main">
 
-        <div class="topo-logo" aria-hidden="true">
-            <img src="/img/logo.png" alt="Logo Prime Fitness Club" />
-        </div>
+            <section class="hero">
+                <span class="hero-saudacao" id="saudacao">Bem-vindo</span>
+                <h1>Seu treino começa aqui</h1>
+                <p>Cadastre matrículas, acompanhe os planos e veja os relatórios em um só lugar.</p>
+                <div class="hero-acoes">
+                    <a class="btn btn-destaque" href="cadastro.html">Nova matrícula</a>
+                    <a class="btn btn-contorno" href="lista.html">Ver alunos</a>
+                </div>
+            </section>
 
-        <h1>PRIME FITNESS CLUB</h1>
+            <p class="aviso" id="aviso-inicio" hidden>Não foi possível carregar os dados agora. Tente novamente em instantes.</p>
 
-    </header>
+            <section class="kpis" aria-label="Indicadores">
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Alunos ativos</span>
+                    <span class="kpi-numero" id="kpi-ativas">0</span>
+                    <span class="kpi-nota">Matrículas com status Ativa</span>
+                </div>
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Novas no mês</span>
+                    <span class="kpi-numero" id="kpi-mes">0</span>
+                    <span class="kpi-nota">Pela data de início</span>
+                </div>
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Vencem em 30 dias</span>
+                    <span class="kpi-numero" id="kpi-vencem">0</span>
+                    <span class="kpi-nota">Pela data de término</span>
+                </div>
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Canceladas</span>
+                    <span class="kpi-numero" id="kpi-canceladas">0</span>
+                    <span class="kpi-nota">Todas as matrículas canceladas</span>
+                </div>
+            </section>
 
-    <button class="btn-sair" data-action="logout">
+            <div class="duas-colunas">
+                <section class="cartao">
+                    <h2 class="titulo">Matrículas ativas por plano</h2>
+                    <div class="barras" id="barras-plano"></div>
+                </section>
 
-        <i class="bi bi-box-arrow-right"></i>
-
-        <span class="tooltip-sair">
-            SAIR DA CONTA
-        </span>
-
-    </button>
-
-    <main class="container">
-
-        <h2>ESCOLHA UMA OPÇÃO</h2>
-
-        <div class="menu">
-
-            <button type="button"
-                    class="card-opcao"
-                    data-href="cadastro.html">
-
-                <i class="bi bi-person-plus card-opcao-icone"
-                   aria-hidden="true"></i>
-
-                <span>ADICIONAR</span>
-
-                <p>
-                    Acesse para adicionar as informações do aluno.
-                </p>
-
-            </button>
-
-            <button type="button"
-                    class="card-opcao"
-                    data-href="lista.html">
-
-                <i class="bi bi-list-ul card-opcao-icone"
-                   aria-hidden="true"></i>
-
-                <span>LISTA</span>
-
-                <p>
-                    Acesse para verificar a lista de alunos cadastrados.
-                </p>
-
-            </button>
-
-            <button type="button"
-                    class="card-opcao opcao-oculta"
-                    id="opcao-master"
-                    data-href="master.html">
-
-                <img src="/img/master.svg" alt="Master" />
-
-                <span>MASTER</span>
-
-                <p>
-                    Acesse para realizar o controle geral do sistema.
-                </p>
-
-            </button>
-
-        </div>
-
-    </main>
-
-    <dialog class="modal-saida"
-            id="confirmacao-saida"
-            aria-labelledby="titulo-confirmacao-saida">
-
-        <div class="modal-saida-conteudo">
-
-            <h2 id="titulo-confirmacao-saida">
-                Deseja sair da conta?
-            </h2>
-
-            <p>
-                Confirme se deseja encerrar sua sessão no sistema.
-            </p>
-
-            <div class="modal-saida-acoes">
-
-                <button type="button"
-                        class="btn-modal-voltar"
-                        data-action="fechar-confirmacao-saida">
-                    Voltar
-                </button>
-
-                <button type="button"
-                        class="btn-modal-sair"
-                        data-action="confirmar-logout">
-                    Sair
-                </button>
-
+                <section class="cartao">
+                    <h2 class="titulo">Últimas matrículas</h2>
+                    <ul class="recentes" id="lista-recentes"></ul>
+                </section>
             </div>
 
-        </div>
-
-    </dialog>
+        </main>
+    </div>
 
     <div vw class="enabled">
-
         <div vw-access-button class="active"></div>
-
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
-
     </div>
 
-    <footer class="rodape-login">
-        PRIME FITNESS CLUB - Seu treino começa aqui!
-    </footer>
-
+    <script src="../js/layout.js"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
-
     <script src="../js/script.js?v3"></script>
+    <script src="../js/inicio.js"></script>
 
 </body>
 </html>
