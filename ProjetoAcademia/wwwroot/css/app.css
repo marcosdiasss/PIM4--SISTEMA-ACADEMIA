@@ -374,3 +374,129 @@ button { font-family: inherit; }
     .hero::after { right: 60px; }
     .barra-linha { grid-template-columns: 100px 1fr 28px; }
 }
+
+.cabecalho-pagina {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.cabecalho-pagina .titulo { font-size: 52px; }
+
+.barra-ferramentas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.campo-busca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 240px;
+    max-width: 420px;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: var(--branco);
+    color: var(--suave);
+}
+
+.campo-busca:focus-within {
+    outline: 3px solid var(--destaque);
+    outline-offset: 2px;
+}
+
+.campo-busca input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font: inherit;
+    color: var(--texto);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    min-height: 40px;
+    padding: 0 18px;
+    border: 1.5px solid #CBD6E6;
+    border-radius: 999px;
+    background: var(--branco);
+    color: var(--texto);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+    border-color: var(--marinho);
+    background: var(--marinho);
+    color: var(--branco);
+}
+
+.tabela-cartao {
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.tabela-rolagem { overflow-x: auto; }
+
+.tabela {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.tabela th {
+    padding: 14px 16px;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--suave);
+}
+
+.tabela td {
+    padding: 16px;
+    border-top: 1px solid var(--linha);
+    vertical-align: middle;
+}
+
+.tabela tbody tr:hover { background: #F8FAFD; }
+
+.celula-nome strong { display: block; }
+.celula-nome small { color: var(--suave); }
+
+.link-acao {
+    min-height: 44px;
+    padding: 0 12px;
+    border: 0;
+    background: none;
+    color: var(--azul);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.rodape-tabela {
+    padding: 14px 16px;
+    border-top: 1px solid var(--linha);
+    font-size: 14px;
+    color: var(--suave);
+}
+
+.selo-breve { background: #FFF1C2; color: #6B4B00; }
