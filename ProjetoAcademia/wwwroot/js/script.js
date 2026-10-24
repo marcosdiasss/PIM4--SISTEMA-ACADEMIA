@@ -762,5 +762,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const campo = document.getElementById("dataInicio");
-    if (campo && !campo.value) campo.value = new Date().toISOString().slice(0, 10);
+     if (campo && !campo.value) campo.value = new Date().toLocaleDateString("sv-SE");
 });
