@@ -739,3 +739,41 @@ button { font-family: inherit; }
 .info-valor { font-size: 17px; font-weight: 600; word-break: break-word; }
 
 .nota { margin: 0; font-size: 14px; color: var(--suave); }
+
+.cartao-acao {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cartao-acao:hover { box-shadow: 0 4px 14px rgba(15, 39, 71, .16); }
+.cartao-acao > i, .cartao-master > i { font-size: 32px; color: var(--azul); }
+
+.cartao-master { gap: 12px; align-items: flex-start; }
+
+.requisitos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    color: var(--suave);
+}
+
+.pagina-publica {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--marinho);
+}
+
+.pagina-publica .marca { align-items: center; color: var(--branco); }
+
+.cartao-publico {
+    width: min(100%, 460px);
+    gap: 18px;
+}

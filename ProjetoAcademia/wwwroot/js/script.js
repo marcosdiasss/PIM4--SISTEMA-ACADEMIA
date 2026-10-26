@@ -635,7 +635,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const esqueciSenha = document.querySelector("[data-action='esqueci-senha']");
     if (esqueciSenha) {
         esqueciSenha.addEventListener("click", function () {
-            window.location.href = "/html/codigo-seguranca.html";
+            window.location.href = "/html/alterar-senha.html";
         });
     }
 
@@ -709,24 +709,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-    const btnBloqueio = document.querySelector("[data-action='toggle-bloqueio-admin']");
-    if (btnBloqueio) {
-        const statusEl = document.getElementById("status-admin");
-        let adminBloqueado = localStorage.getItem("adminBloqueado") === "true";
-
-        function atualizarStatusAdmin() {
-            if (statusEl) statusEl.innerText = adminBloqueado ? "Bloqueado" : "Desbloqueado";
-        }
-
-        atualizarStatusAdmin();
-
-        btnBloqueio.addEventListener("click", function () {
-            adminBloqueado = !adminBloqueado;
-            localStorage.setItem("adminBloqueado", adminBloqueado);
-            atualizarStatusAdmin();
-        });
-    }
 
     const btnRemoverFoto = document.querySelector("[data-action='remover-foto']");
     if (btnRemoverFoto) {

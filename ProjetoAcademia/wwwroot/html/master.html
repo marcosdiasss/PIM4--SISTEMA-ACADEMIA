@@ -1,105 +1,66 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel master - Prime Fitness Club</title>
     <link rel="icon" href="../img/relatorio.png" />
-    <link rel="stylesheet" href="../css/style.css">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-  </head>
-  <body data-page="master">
-    <header class="topo">
-      <div class="topo-logo" aria-hidden="true">
-        <img src="../img/logo.png" alt="" />
-      </div>
-      <h1>PRIME FITNESS CLUB</h1>
-    </header>
-    <button class="btn-sair" data-action="logout">
-      <i class="bi bi-box-arrow-right"> </i>
-      <span class="tooltip-sair"> SAIR DA CONTA </span>
-    </button>
-    <main class="container">
-      <h2>Painel master</h2>
-      <p id="mensagem-master" class="mensagem mensagem-master"></p>
-      <div class="master-grid">
-        <button
-          type="button"
-          class="card-opcao master-card"
-          data-action="toggle-bloqueio-admin"
-        >
-          <i class="bi bi-person-lock master-card-icone" aria-hidden="true">
-          </i>
-          <span> ADMINISTRADOR </span>
-          <p id="status-admin">Carregando...</p>
-          <p>Bloquear ou desbloquear o acesso do administrador.</p>
-        </button>
-        <button
-          type="button"
-          class="card-opcao master-card"
-          data-href="historico.html"
-        >
-          <i class="bi bi-clipboard-data master-card-icone" aria-hidden="true">
-          </i>
-          <span> RELATÓRIO </span>
-          <p>Visualizar o relatório geral do sistema.</p>
-        </button>
-        <button
-          type="button"
-          class="card-opcao master-card"
-          data-href="codigo-seguranca.html"
-        >
-          <i class="bi bi-shield-lock master-card-icone" aria-hidden="true">
-          </i>
-          <span> CÓDIGO </span>
-          <p>Alterar o código usado na recuperação de senha.</p>
-        </button>
-      </div>
-      <div class="acoes">
-        <button type="button" class="voltar" data-href="menu.html">
-          Voltar
-        </button>
-      </div>
-    </main>
-    <dialog
-      class="modal-saida"
-      id="confirmacao-saida"
-      aria-labelledby="titulo-confirmacao-saida"
-    >
-      <div class="modal-saida-conteudo">
-        <h2 id="titulo-confirmacao-saida">Deseja sair da conta?</h2>
-        <p>Confirme se deseja encerrar sua sessão no sistema.</p>
-        <div class="modal-saida-acoes">
-          <button
-            type="button"
-            class="btn-modal-voltar"
-            data-action="fechar-confirmacao-saida"
-          >
-            Voltar
-          </button>
-          <button
-            type="button"
-            class="btn-modal-sair"
-            data-action="confirmar-logout"
-          >
-            Sair
-          </button>
-        </div>
-      </div>
-    </dialog>
-    <div vw class="enabled">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-      </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+</head>
+
+<body data-page="master">
+
+    <div class="app">
+        <main class="main">
+
+            <header class="cabecalho-pagina">
+                <h1 class="titulo">Painel master</h1>
+            </header>
+
+            <p id="mensagem-master" class="mensagem" role="status" aria-live="polite"></p>
+
+            <section class="kpis">
+                <div class="cartao cartao-master">
+                    <i class="bi bi-person-lock" aria-hidden="true"></i>
+                    <h2 class="titulo">Administrador</h2>
+                    <span class="selo" id="status-admin">Carregando...</span>
+                    <p class="nota">Bloqueie ou desbloqueie o acesso do administrador ao sistema.</p>
+                    <button type="button" class="btn btn-claro" id="btn-bloqueio">Alterar bloqueio</button>
+                </div>
+
+                <a class="cartao cartao-master cartao-acao" href="relatorios.html">
+                    <i class="bi bi-clipboard-data" aria-hidden="true"></i>
+                    <h2 class="titulo">Relatórios</h2>
+                    <p class="nota">Veja os gráficos do sistema e gere o documento do relatório.</p>
+                </a>
+
+                <a class="cartao cartao-master cartao-acao" href="codigo-seguranca.html">
+                    <i class="bi bi-shield-lock" aria-hidden="true"></i>
+                    <h2 class="titulo">Código de segurança</h2>
+                    <p class="nota">Altere o código usado na recuperação de senha.</p>
+                </a>
+            </section>
+        </main>
     </div>
-    <footer class="rodape-login">
-      PRIME FITNESS CLUB - Seu treino começa aqui!
-    </footer>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="../js/layout.js"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
     <script src="../js/script.js?v3"></script>
-  </body>
+    <script src="../js/master.js"></script>
+
+</body>
 </html>

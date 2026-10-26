@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProjetoAcademiaApi.Models;
 
 namespace ProjetoAcademiaApi.Data
@@ -15,6 +15,7 @@ namespace ProjetoAcademiaApi.Data
         public DbSet<Usuario> Usuarios { get; set; } = null!;
         public DbSet<Matricula> Matriculas { get; set; } = null!;
         public DbSet<Pagamento> Pagamentos { get; set; } = null!;
+        public DbSet<Configuracao> Configuracoes { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +24,12 @@ namespace ProjetoAcademiaApi.Data
             modelBuilder.Entity<Matricula>().Property(m => m.Id).ValueGeneratedNever();
             modelBuilder.Entity<Pagamento>().Property(p => p.Id).ValueGeneratedNever();
             modelBuilder.Entity<Usuario>().Property(u => u.Id).ValueGeneratedNever();
+
+            modelBuilder.Entity<Matricula>().ToTable("Matricula", tabela =>
+            {
+                tabela.HasTrigger("trg_Matricula_Auditoria");
+                tabela.HasTrigger("trg_Matricula_UmaAtiva");
+            });
         }
     }
 }

@@ -18,5 +18,8 @@ namespace ProjetoAcademiaApi.Models
 
         [Column("perfil")]
         public string? Perfil { get; set; }
+
+        [Column("bloqueado")]
+        public bool Bloqueado { get; set; }
     }
 }

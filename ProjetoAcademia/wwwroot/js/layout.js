@@ -1,4 +1,9 @@
 (function () {
+    if (!localStorage.getItem("token")) {
+        window.location.href = "/html/login.html";
+        return;
+    }
+
     const itens = [
         { href: "menu.html", paginas: ["menu"], icone: "bi-house", texto: "Início" },
         { href: "lista.html", paginas: ["lista", "perfil", "editar"], icone: "bi-people", texto: "Alunos" },
