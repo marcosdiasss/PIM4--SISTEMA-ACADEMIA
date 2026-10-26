@@ -1,11 +1,4 @@
-﻿IF DB_ID('PIM') IS NOT NULL
-BEGIN
-    ALTER DATABASE PIM SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-    DROP DATABASE PIM;
-END
-GO
-
-IF DB_ID('PIM') IS NULL
+﻿IF DB_ID('PIM') IS NULL
     CREATE DATABASE PIM;
 GO
 
@@ -17,7 +10,8 @@ CREATE TABLE Usuario (
     id_Usuario INT PRIMARY KEY,
     login VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    perfil VARCHAR(20) NOT NULL CONSTRAINT DF_Usuario_perfil DEFAULT 'admin'
+    perfil VARCHAR(20) NOT NULL CONSTRAINT DF_Usuario_perfil DEFAULT 'admin',
+    bloqueado BIT NOT NULL CONSTRAINT DF_Usuario_bloqueado DEFAULT 0
 );
 
 IF OBJECT_ID('Plano', 'U') IS NULL
@@ -68,6 +62,12 @@ CREATE TABLE RecuperacaoSenha (
     CONSTRAINT FK_RecuperacaoSenha_Usuario FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario)
 );
 
+IF OBJECT_ID('Configuracao', 'U') IS NULL
+CREATE TABLE Configuracao (
+    chave VARCHAR(50) PRIMARY KEY,
+    valor VARCHAR(255) NOT NULL
+);
+
 IF OBJECT_ID('Auditoria', 'U') IS NULL
 CREATE TABLE Auditoria (
     id_auditoria INT IDENTITY PRIMARY KEY,
@@ -81,6 +81,9 @@ GO
 
 IF COL_LENGTH('Usuario', 'perfil') IS NULL
     ALTER TABLE Usuario ADD perfil VARCHAR(20) NOT NULL CONSTRAINT DF_Usuario_perfil DEFAULT 'admin';
+
+IF COL_LENGTH('Usuario', 'bloqueado') IS NULL
+    ALTER TABLE Usuario ADD bloqueado BIT NOT NULL CONSTRAINT DF_Usuario_bloqueado DEFAULT 0;
 
 IF COL_LENGTH('Matricula', 'data_inicio') IS NULL
     ALTER TABLE Matricula ADD data_inicio DATE NOT NULL CONSTRAINT DF_Matricula_inicio DEFAULT CAST(GETDATE() AS DATE);
@@ -128,6 +131,9 @@ FROM (VALUES
 ) AS v (id_plano, nome, duracao_meses)
 WHERE NOT EXISTS (SELECT 1 FROM Plano p WHERE p.id_plano = v.id_plano);
 
+IF NOT EXISTS (SELECT 1 FROM Configuracao WHERE chave = 'codigo_seguranca')
+    INSERT INTO Configuracao (chave, valor) VALUES ('codigo_seguranca', 'v1.100000.xL1BeWPDuXCUt5q1GjQTMw==.j6VRCtCeHt/VcsqlnFDPUg6M8NONQx0V1Gv9izIgXW0=');
+
 IF NOT EXISTS (SELECT 1 FROM Aluno)
 BEGIN
     INSERT INTO Aluno (id_aluno, nome, cpf, telefone, email, data_nascimento)
@@ -153,7 +159,7 @@ JOIN Plano p ON p.id_plano = m.id_plano
 LEFT JOIN Pagamento pg ON pg.id_matricula = m.id_matricula;
 GO
 
-CREATE OR ALTER PROCEDURE sp_RelatorioPorPlano @Inicio DATE = NULL, @Fim DATE = NULL AS
+CREATE OR ALTER PROCEDURE sp_RelatorioPorPlano @Inicio DATE = NULL, @Fim DATE = NULL, @Formas NVARCHAR(200) = NULL AS
 BEGIN
     SET NOCOUNT ON;
     SELECT p.nome AS Plano, COUNT(m.id_matricula) AS TotalMatriculas
@@ -161,28 +167,38 @@ BEGIN
     LEFT JOIN Matricula m ON m.id_plano = p.id_plano AND m.status = 'Ativa'
          AND (@Inicio IS NULL OR m.data_inicio >= @Inicio)
          AND (@Fim IS NULL OR m.data_inicio <= @Fim)
+         AND (@Formas IS NULL OR EXISTS (SELECT 1 FROM Pagamento pg
+               WHERE pg.id_matricula = m.id_matricula
+                 AND pg.forma_pagamento IN (SELECT LTRIM(RTRIM(value)) FROM STRING_SPLIT(@Formas, ','))))
     GROUP BY p.nome
     ORDER BY TotalMatriculas DESC, p.nome;
 END
 GO
 
-CREATE OR ALTER PROCEDURE sp_MatriculasPorMes @Ano INT = NULL AS
+CREATE OR ALTER PROCEDURE sp_MatriculasPorMes @Ano INT = NULL, @Formas NVARCHAR(200) = NULL AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT YEAR(data_inicio) AS Ano, MONTH(data_inicio) AS Mes, COUNT(*) AS Total
-    FROM Matricula
-    WHERE @Ano IS NULL OR YEAR(data_inicio) = @Ano
-    GROUP BY YEAR(data_inicio), MONTH(data_inicio)
+    SELECT YEAR(m.data_inicio) AS Ano, MONTH(m.data_inicio) AS Mes, COUNT(*) AS Total
+    FROM Matricula m
+    WHERE (@Ano IS NULL OR YEAR(m.data_inicio) = @Ano)
+      AND (@Formas IS NULL OR EXISTS (SELECT 1 FROM Pagamento pg
+               WHERE pg.id_matricula = m.id_matricula
+                 AND pg.forma_pagamento IN (SELECT LTRIM(RTRIM(value)) FROM STRING_SPLIT(@Formas, ','))))
+    GROUP BY YEAR(m.data_inicio), MONTH(m.data_inicio)
     ORDER BY Ano, Mes;
 END
 GO
 
-CREATE OR ALTER PROCEDURE sp_ResumoPagamentos AS
+CREATE OR ALTER PROCEDURE sp_ResumoPagamentos @Inicio DATE = NULL, @Fim DATE = NULL, @Formas NVARCHAR(200) = NULL AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT forma_pagamento AS FormaPagamento, COUNT(*) AS Quantidade
-    FROM Pagamento
-    GROUP BY forma_pagamento
+    SELECT pg.forma_pagamento AS FormaPagamento, COUNT(*) AS Quantidade
+    FROM Pagamento pg
+    JOIN Matricula m ON m.id_matricula = pg.id_matricula
+    WHERE (@Inicio IS NULL OR m.data_inicio >= @Inicio)
+      AND (@Fim IS NULL OR m.data_inicio <= @Fim)
+      AND (@Formas IS NULL OR pg.forma_pagamento IN (SELECT LTRIM(RTRIM(value)) FROM STRING_SPLIT(@Formas, ',')))
+    GROUP BY pg.forma_pagamento
     ORDER BY Quantidade DESC;
 END
 GO
