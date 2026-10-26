@@ -73,17 +73,23 @@ namespace ProjetoAcademiaApi.Controllers
             if (string.IsNullOrWhiteSpace(aluno.Nome))
                 return BadRequest(new { mensagem = "O nome é obrigatório." });
 
+            var telefone = new string((aluno.Telefone ?? "").Where(char.IsDigit).ToArray());
+            if (telefone.Length != 0 && (telefone.Length < 10 || telefone.Length > 11))
+                return BadRequest(new { mensagem = "Telefone inválido. Informe o DDD e o número." });
+
             if (!string.IsNullOrWhiteSpace(aluno.Cpf))
             {
-                var cpfLimpo = aluno.Cpf.Replace(".", "").Replace("-", "").Trim();
+                var cpfLimpo = new string(aluno.Cpf.Where(char.IsDigit).ToArray());
+                if (cpfLimpo.Length != 11)
+                    return BadRequest(new { mensagem = "O CPF deve ter 11 dígitos." });
                 if (_contexto.Alunos.Any(a => a.Cpf == cpfLimpo && a.Id != id))
                     return BadRequest(new { mensagem = "Já existe outro aluno cadastrado com este CPF." });
                 existente.Cpf = cpfLimpo;
             }
 
             existente.Nome = aluno.Nome.Trim();
-            existente.Telefone = aluno.Telefone?.Trim();
-            existente.Email = aluno.Email?.Trim();
+            existente.Telefone = telefone.Length == 0 ? null : telefone;
+            if (!string.IsNullOrWhiteSpace(aluno.Email)) existente.Email = aluno.Email.Trim();
             existente.DataNascimento = aluno.DataNascimento;
 
             _contexto.SaveChanges();

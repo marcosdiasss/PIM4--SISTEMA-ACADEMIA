@@ -5,6 +5,7 @@ async function apiFetch(url, opcoes = {}) {
     const resposta = await fetch(url, { ...opcoes, headers });
     if (resposta.status === 401 && !url.includes("/api/auth/login")) {
         localStorage.removeItem("token");
+    localStorage.removeItem("nomeUsuario");
         localStorage.removeItem("usuarioLogado");
         window.location.href = "/html/login.html";
     }
@@ -114,13 +115,17 @@ async function login() {
 
         if (!resposta.ok) {
             const dados = await resposta.json().catch(() => ({}));
-            mostrarMensagem(dados.mensagem || "Usuário ou senha inválidos.");
+            const padrao = resposta.status >= 500
+                ? "Erro no servidor. Confira se o banco de dados foi criado (BANCO_PIM.sql)."
+                : "Usuário ou senha inválidos.";
+            mostrarMensagem(dados.mensagem || padrao);
             return;
         }
 
         const dados = await resposta.json();
         localStorage.setItem("usuarioLogado", dados.tipo);
         localStorage.setItem("token", dados.token);
+        localStorage.setItem("nomeUsuario", dados.login);
         window.location.href = "/html/menu.html";
 
     } catch {
@@ -307,10 +312,9 @@ async function salvarEdicao() {
 
     const payload = {
         nome: nome,
-        cpf: cpf,
-        telefone: telefone,
-        dataNascimento: dataFormatada,
-        email: ""
+        cpf: cpf.replace(/\D/g, ""),
+        telefone: telefone.replace(/\D/g, ""),
+        dataNascimento: dataFormatada
     };
 
     try {
@@ -398,6 +402,9 @@ async function carregarPerfil() {
     const telefone = document.getElementById("perfilTelefone");
     const plano = document.getElementById("perfilPlano");
     const pagamento = document.getElementById("perfilPagamento");
+    const inicio = document.getElementById("perfilInicio");
+    const termino = document.getElementById("perfilTermino");
+    const situacao = document.getElementById("perfilSituacao");
 
     if (nome) nome.innerText = aluno.nome || "";
     if (data) data.innerText = formatarData(aluno.dataNascimento);
@@ -405,6 +412,9 @@ async function carregarPerfil() {
     if (telefone) telefone.innerText = aluno.telefone || "";
     if (plano) plano.innerText = aluno.plano || "";
     if (pagamento) pagamento.innerText = aluno.pagamento || "";
+    if (inicio) inicio.innerText = formatarData(aluno.dataInicio);
+    if (termino) termino.innerText = formatarData(aluno.dataFim);
+    if (situacao) situacao.innerText = aluno.status || "";
 
     const btnEditar = document.getElementById("btnEditar");
     if (btnEditar) {
@@ -489,6 +499,7 @@ async function carregarRelatorio() {
 function logout() {
     localStorage.removeItem("usuarioLogado");
     localStorage.removeItem("token");
+    localStorage.removeItem("nomeUsuario");
     window.location.href = "/html/login.html";
 }
 
@@ -762,5 +773,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const campo = document.getElementById("dataInicio");
-     if (campo && !campo.value) campo.value = new Date().toLocaleDateString("sv-SE");
+    if (campo && !campo.value) campo.value = new Date().toLocaleDateString("sv-SE");
 });

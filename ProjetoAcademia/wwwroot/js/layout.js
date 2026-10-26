@@ -1,10 +1,9 @@
 (function () {
     const itens = [
         { href: "menu.html", paginas: ["menu"], icone: "bi-house", texto: "Início" },
-        { href: "lista.html", paginas: ["lista", "editar"], icone: "bi-people", texto: "Alunos" },
+        { href: "lista.html", paginas: ["lista", "perfil", "editar"], icone: "bi-people", texto: "Alunos" },
         { href: "cadastro.html", paginas: ["cadastro"], icone: "bi-person-plus", texto: "Nova matrícula" },
-        { href: "relatorio.html", paginas: ["relatorio"], icone: "bi-bar-chart", texto: "Relatórios" },
-        { href: "perfil.html", paginas: ["perfil"], icone: "bi-person-circle", texto: "Perfil" },
+        { href: "relatorios.html", paginas: ["relatorios", "relatorio-documento"], icone: "bi-bar-chart", texto: "Relatórios" },
         { href: "master.html", paginas: ["master", "historico"], icone: "bi-shield-lock", texto: "Master", soMaster: true }
     ];
 
