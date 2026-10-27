@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Início - Prime Fitness Club</title>
+    <link rel="icon" href="../img/relatorio.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+</head>
+
+<body data-page="menu">
+
+    <div class="app">
+        <main class="main">
+
+            <section class="hero">
+                <span class="hero-saudacao" id="saudacao">Bem-vindo</span>
+                <h1>Seu treino começa aqui</h1>
+                <p>Cadastre matrículas, acompanhe os planos e veja os relatórios em um só lugar.</p>
+                <div class="hero-acoes">
+                    <a class="btn btn-destaque" href="cadastro.html">Nova matrícula</a>
+                    <a class="btn btn-contorno" href="lista.html">Ver alunos</a>
+                </div>
+            </section>
+
+            <p class="aviso" id="aviso-inicio" hidden>Não foi possível carregar os dados agora. Tente novamente em instantes.</p>
+
+            <section class="kpis" aria-label="Indicadores">
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Alunos ativos</span>
+                    <span class="kpi-numero" id="kpi-ativas">0</span>
+                    <span class="kpi-nota">Matrículas com status Ativa</span>
+                </div>
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Novas no mês</span>
+                    <span class="kpi-numero" id="kpi-mes">0</span>
+                    <span class="kpi-nota">Pela data de início</span>
+                </div>
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Vencem em 30 dias</span>
+                    <span class="kpi-numero" id="kpi-vencem">0</span>
+                    <span class="kpi-nota">Pela data de término</span>
+                </div>
+                <div class="cartao kpi">
+                    <span class="kpi-rotulo">Canceladas</span>
+                    <span class="kpi-numero" id="kpi-canceladas">0</span>
+                    <span class="kpi-nota">Todas as matrículas canceladas</span>
+                </div>
+            </section>
+
+            <div class="duas-colunas">
+                <section class="cartao">
+                    <h2 class="titulo">Matrículas ativas por plano</h2>
+                    <div class="barras" id="barras-plano"></div>
+                </section>
+
+                <section class="cartao">
+                    <h2 class="titulo">Últimas matrículas</h2>
+                    <ul class="recentes" id="lista-recentes"></ul>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="../js/layout.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="../js/script.js?v3"></script>
+    <script src="../js/inicio.js"></script>
+
+</body>
+</html>

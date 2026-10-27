@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alunos - Prime Fitness Club</title>
+    <link rel="icon" href="../img/relatorio.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../css/app.css" />
+</head>
+
+<body data-page="lista">
+
+    <div class="app">
+        <main class="main">
+
+            <header class="cabecalho-pagina">
+                <h1 class="titulo">Alunos</h1>
+                <a class="btn btn-destaque" href="cadastro.html">Nova matrícula</a>
+            </header>
+
+
+            <div class="barra-ferramentas">
+                <label class="campo-busca">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <input type="search" id="busca-alunos" placeholder="Buscar por nome, CPF ou plano" aria-label="Buscar aluno" />
+                </label>
+
+                <div class="chips" role="group" aria-label="Filtrar por situação">
+                    <button type="button" class="chip" data-filtro="todos" aria-pressed="true">Todos</button>
+                    <button type="button" class="chip" data-filtro="ativas" aria-pressed="false">Ativas</button>
+                    <button type="button" class="chip" data-filtro="vencem" aria-pressed="false">Vencem em 30 dias</button>
+                    <button type="button" class="chip" data-filtro="canceladas" aria-pressed="false">Canceladas</button>
+                </div>
+            </div>
+
+            <p class="aviso" id="aviso-lista" hidden>Não foi possível carregar os alunos agora. Tente novamente em instantes.</p>
+
+            <section class="cartao tabela-cartao">
+                <div class="tabela-rolagem">
+                    <table class="tabela">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Plano</th>
+                                <th>Início</th>
+                                <th>Término</th>
+                                <th>Situação</th>
+                                <th>Pagamento</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-alunos"></tbody>
+                    </table>
+                </div>
+                <div class="rodape-tabela" id="contador-alunos" aria-live="polite"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="../js/layout.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="../js/script.js?v3"></script>
+    <script src="../js/lista.js"></script>
+
+</body>
+</html>
